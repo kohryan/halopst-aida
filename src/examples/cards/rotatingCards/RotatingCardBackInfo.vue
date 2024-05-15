@@ -29,9 +29,11 @@ defineProps({
       backgroundSize: 'cover',
     }"
   >
-    <div class="card-body pt-7 text-center">
-      <h3 class="text-white" v-html="title"></h3>
-      <p class="text-white opacity-8">
+    <div class="card-body pt-5 text-center">
+      <a class="d-block blur-shadow-image">
+        <img src="../../../assets/img/illustrations/jadwal.png" width="40%" class="img-fluid mb-2 border-radius-lg" />
+      </a>
+      <p class="text-white">
         {{ description }}
       </p>
       <div class="buttons-group">
