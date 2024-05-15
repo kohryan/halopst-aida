@@ -11,7 +11,6 @@ import FilledInfoCard from "../../examples/cards/infoCards/FilledInfoCard.vue";
 import MaterialSocialButton from "@/components/MaterialSocialButton.vue";
 
 // sections
-import PresentationPages from "./Sections/PresentationPages.vue";
 import BuiltByDevelopers from "./Components/BuiltByDevelopers.vue";
 import PresentationTestimonials from "./Sections/PresentationTestimonials.vue";
 import PresentationInformation from "./Sections/PresentationInformation.vue";
@@ -19,12 +18,6 @@ import PresentationInformation from "./Sections/PresentationInformation.vue";
 //images
 import bg0 from "@/assets/img/bg9.jpg";
 import wavesWhite from "@/assets/img/waves-white.svg";
-import logoBootstrap from "@/assets/img/logos/bootstrap5.jpg";
-import logoTailwind from "@/assets/img/logos/icon-tailwind.jpg";
-import logoVue from "@/assets/img/logos/vue.jpg";
-import logoAngular from "@/assets/img/logos/angular.jpg";
-import logoReact from "@/assets/img/logos/react.jpg";
-import logoSketch from "@/assets/img/logos/sketch.jpg";
 
 //dep
 import Typed from "typed.js";
@@ -77,15 +70,18 @@ onUnmounted(() => {
               class="text-white pt-3 mt-n5 me-2"
               :style="{ display: 'inline-block ' }"
             >
-            Pelayanan Statistik 24 Jam
+            Halo PST BPS Jatim!
             </h1>
             <p class="text-white px-5 mt-1" :style="{ fontWeight: '500' }">
-              Pencarian Data dan Konsultasi Statistik yang lebih <span class="text-white" id="typed"></span>
+              <i>"Saya lagi butuh <span class="text-white" id="typed"></span>, nih </i>🥺 <br />
+              <span class="text-white font-weight-bold">
+                Tenang! Kami Ada untuk Solusi Data Anda
+              </span>
             </p>
             <div id="typed-strings">
-              <h1>mudah</h1>
-              <h1>cepat</h1>
-              <h1>fleksibel</h1>
+              <h1>data statistik</h1>
+              <h1>konsultasi data</h1>
+              <h1><s>jodoh</s> ide skripsi</h1>
             </div>
           </div>
           <div class="col-lg-6 mx-auto position-relative">
@@ -101,7 +97,6 @@ onUnmounted(() => {
 
   <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-n6">
     <PresentationInformation />
-    <PresentationPages />
     <BuiltByDevelopers />
 
     <div class="container">

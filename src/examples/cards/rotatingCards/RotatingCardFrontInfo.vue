@@ -20,11 +20,15 @@ defineProps({
     type: String,
     required: true,
   },
+  label: {
+    type: String,
+    required: true,
+  },
 });
 </script>
 <template>
   <div
-    class="front front-background"
+    class="front-info front-background"
     :style="{
       backgroundImage: `url(${image})`,
       backgroundSize: 'cover',
