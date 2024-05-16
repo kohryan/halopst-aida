@@ -18,12 +18,12 @@ const router = createRouter({
     },
     {
       path: "/konsultasi",
-      name: "about",
+      name: "konsultasi",
       component: KonsultasiView,
     },
     {
       path: "/login",
-      name: "signin-basic",
+      name: "login",
       component: LoginView,
     },
   ],
