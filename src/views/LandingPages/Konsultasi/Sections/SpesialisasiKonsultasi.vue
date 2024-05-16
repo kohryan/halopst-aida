@@ -20,7 +20,7 @@ import inflasi from "@/assets/img/illustrations/inflasi.png";
             <InfoCard 
               :image="timeseries"
               description="Time Series"
-              :url="'/konsultasi/petugas/timeseries'"
+              :url="'/konsultasi'"
             />
           </div>
         </div>
@@ -29,7 +29,7 @@ import inflasi from "@/assets/img/illustrations/inflasi.png";
             <InfoCard
               :image="sosduk"
               description="Sosial & Kependudukan"
-              :url="'/konsultasi/petugas/timeseries'"
+              :url="'/konsultasi'"
             />
           </div>
         </div>
@@ -38,7 +38,7 @@ import inflasi from "@/assets/img/illustrations/inflasi.png";
             <InfoCard
               :image="pertanian"
               description="Pertanian"
-              :url="'/konsultasi/petugas/timeseries'"
+              :url="'/konsultasi'"
             />
           </div>
         </div>
@@ -47,7 +47,7 @@ import inflasi from "@/assets/img/illustrations/inflasi.png";
             <InfoCard
               :image="ekonomi"
               description="Ekonomi"
-              :url="'/konsultasi/petugas/timeseries'"
+              :url="'/konsultasi'"
             />
           </div>
         </div>
@@ -56,7 +56,7 @@ import inflasi from "@/assets/img/illustrations/inflasi.png";
             <InfoCard
               :image="inflasi"
               description="Inflasi"
-              :url="'/konsultasi/petugas/timeseries'"
+              :url="'/konsultasi'"
             />
           </div>
         </div>
@@ -65,7 +65,7 @@ import inflasi from "@/assets/img/illustrations/inflasi.png";
             <InfoCard
               :image="pertambangan"
               description="Pertambangan, Energi, dan Konstruksi"
-              :url="'/konsultasi/petugas/timeseries'"
+              :url="'/konsultasi'"
             />
           </div>
         </div>
