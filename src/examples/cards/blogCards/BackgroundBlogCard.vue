@@ -12,6 +12,10 @@ defineProps({
     type: String,
     required: true,
   },
+  url: {
+    type: String,
+    required: true,
+  },
   action: {
     type: Object,
     route: String,
@@ -19,27 +23,25 @@ defineProps({
     color: String,
     default: () => ({
       route: "javascript:;",
-      label: "Read more",
-      color: "white",
+      label: "Menuju Layanan",
+      color: "gray-800",
     }),
   },
 });
 </script>
 <template>
-  <div class="card card-blog card-background cursor-pointer">
-    <div
-      class="full-background"
-      :style="{ backgroundImage: `url(${image})` }"
-      loading="lazy"
-    ></div>
-    <div class="card-body">
-      <div class="content-left text-start my-auto py-4">
-        <h2 class="card-title text-white">{{ title }}</h2>
-        <p class="card-description text-white">
+  <div class="info-horizontal border-radius-xl d-block d-md-flex bg-gray-300">
+    <div class="card-body justify-content-center text-center">
+      <a class="d-block blur-shadow-image">
+        <img :src="image" width="40%" class="img-fluid mb-2 border-radius-lg" />
+      </a>
+      <div class="text-gray-800">
+        <h5 class="card-title" style="margin-bottom: 0;">{{ title }}</h5>
+        <p class="card-description text-sm text-gray-900 font-weight-normal">
           {{ description }}
         </p>
         <a
-          href="javascript:;"
+          :href="url"
           class="text-sm icon-move-right"
           :class="`text-${action.color}`"
           >{{ action.label }}

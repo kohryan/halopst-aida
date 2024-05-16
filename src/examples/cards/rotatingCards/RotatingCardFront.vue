@@ -30,12 +30,12 @@ defineProps({
       backgroundSize: 'cover',
     }"
   >
-    <div class="card-body py-7 text-center">
-      <i v-if="icon" class="material-icons text-white text-4xl my-3">{{
-        icon
-      }}</i>
+  <div class="card-body py-5 text-center">
+      <a class="d-block blur-shadow-image">
+        <img src="../../../assets/img/illustrations/aida.png" width="40%" class="img-fluid border-radius-lg" />
+      </a>
       <h3 class="text-white" v-html="title" />
-      <p class="text-white opacity-8">
+      <p class="text-white opacity-9">
         {{ description }}
       </p>
       <p

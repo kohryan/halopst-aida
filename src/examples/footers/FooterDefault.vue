@@ -1,5 +1,5 @@
 <script setup>
-import logoDark from "@/assets/img/logo-ct-dark.png";
+import logoDark from "@/assets/img/logo-ct-dark.svg";
 defineProps({
   brand: {
     type: Object,
@@ -7,7 +7,6 @@ defineProps({
     logo: String,
     route: "",
     default: () => ({
-      name: "Material Kit 2",
       logo: logoDark,
       route: "/"
     })
@@ -49,72 +48,74 @@ defineProps({
     },
     default: () => [
       {
-        name: "company",
+        name: "Tentang BPS",
         items: [
           {
-            name: "about us",
-            href: "https://www.creative-tim.com/presentation"
+            name: "Informasi Umum",
+            href: "https://ppid.bps.go.id/app/konten/3500/Profil-BPS.html#pills-0"
           },
           {
-            name: "freebies",
-            href: "https://www.creative-tim.com/templates/free"
+            name: "Visi & Misi",
+            href: "https://ppid.bps.go.id/app/konten/3500/Profil-BPS.html#pills-1"
           },
           {
-            name: "premium tools",
-            href: "https://www.creative-tim.com/templates/premium"
+            name: "Tugas & Fungsi",
+            href: "https://ppid.bps.go.id/app/konten/3500/Profil-BPS.html#pills-3"
           },
-          { name: "blog", href: "https://www.creative-tim.com/blog" }
         ]
       },
       {
-        name: "resources",
+        name: "Tentang PST",
         items: [
-          { name: "illustrations", href: "https://iradesign.io/" },
-          {
-            name: "bits & snippets",
-            href: "https://www.creative-tim.com/bits"
+          { 
+            name: "Pelayanan Statistik Terpadu", 
+            href: "https://ppid.bps.go.id/app/konten/3500/Layanan-BPS.html#pills-0" 
           },
           {
-            name: "affiliate program",
-            href: "https://www.creative-tim.com/affiliates/new"
+            name: "Standar Pelayanan",
+            href: "https://ppid.bps.go.id/app/konten/3500/Layanan-BPS.html#pills-2"
+          },
+          {
+            name: "Maklumat Pelayanan",
+            href: "https://ppid.bps.go.id/app/konten/3500/Layanan-BPS.html#pills-2"
+          },
+          {
+            name: "Kompensasi Pelayanan",
+            href: "https://ppid.bps.go.id/app/konten/3500/Layanan-BPS.html#pills-3"
           }
         ]
       },
       {
-        name: "help & support",
+        name: "Bantuan",
         items: [
           {
-            name: "contact us",
-            href: "https://www.creative-tim.com/contact-us"
+            name: "Survei Kepuasan",
+            href: "https://ppid.bps.go.id/app/konten/3500/Layanan-BPS.html#pills-9"
           },
           {
-            name: "knowledge center",
-            href: "https://www.creative-tim.com/knowledge-center"
+            name: "Pengaduan",
+            href: "https://ppid.bps.go.id/app/konten/3500/Layanan-BPS.html#pills-11"
           },
           {
-            name: "custom development",
-            href: "https://services.creative-tim.com/"
-          },
-          {
-            name: "sponsorships",
-            href: "https://www.creative-tim.com/sponsorships"
+            name: "Informasi Pelayanan",
+            href: "https://ppid.bps.go.id/app/konten/3500/Layanan-BPS.html#pills-12"
           }
         ]
       },
       {
-        name: "legal",
+        name: "Website",
         items: [
           {
-            name: "terms & conditions",
-            href: "https://www.creative-tim.com/terms"
+            name: "BPS",
+            href: "https://jatim.bps.go.id"
           },
           {
-            name: "privacy policy",
-            href: "https://www.creative-tim.com/privacy"
+            name: "PPID",
+            href: "https://ppid.bps.go.id/?mfd=3500"
           },
           {
-            name: "licenses (EULA)",
-            href: "https://www.creative-tim.com/license"
+            name: "Pojok Statistik",
+            href: "https://pojokstatistik.bps.go.id/page/map"
           }
         ]
       }
@@ -129,9 +130,11 @@ defineProps({
         <div class="col-md-3 mb-4 ms-auto">
           <div>
             <a :href="brand.route">
-              <img :src="brand.logo" class="mb-3 footer-logo" alt="main_logo" />
+              <img :src="brand.logo" class="mb-3 footer-logo" width="100%"alt="main_logo" />
             </a>
-            <h6 class="font-weight-bolder mb-4">{{ brand.name }}</h6>
+            <p class="font-weight-normal text-dark text-xs mb-4">
+              Jalan Raya Kendangsari Industri No. 43 - 44 Surabaya 60292, 
+              Telp. (031) 8439343, Fax (031) 8494007, 8471143, Email : jatim@bps.go.id</p>
           </div>
           <div>
             <ul class="d-flex flex-row ms-n3 nav">
@@ -169,11 +172,10 @@ defineProps({
         <div class="col-12">
           <div class="text-center">
             <p class="text-dark my-4 text-sm font-weight-normal">
-              All rights reserved. Copyright ©
-              {{ new Date().getFullYear() }}
-              Material Kit by
-              <a href="https://www.creative-tim.com" target="_blank"
-                >Creative Tim</a
+              Semua Hak Dilindungi ©
+              {{ new Date().getFullYear() }},
+              <a href="https://jatim.bps.go.id" target="_blank"
+                >BPS Provinsi Jawa Timur</a
               >.
             </p>
           </div>

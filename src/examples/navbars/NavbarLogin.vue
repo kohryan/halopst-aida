@@ -18,9 +18,9 @@ const props = defineProps({
     default: () => 
     (
       {
-        route: "/konsultasi",
-        color: "bg-gradient-danger",
-        label: "Konsultasi Sekarang"
+        route: "/pages/landing-pages/basic",
+        color: "bg-gradient-success",
+        label: "Login"
       }
     )
   },
@@ -189,16 +189,13 @@ watch(
               <span>Chat AI</span>
             </RouterLink>
           </li>
-        </ul>
-        <ul class="navbar-nav d-lg-block d-none">
-          <li class="nav-item mx-2">
-            <a
-              :href="konsultasi.route"
-              class="btn btn-sm mb-0"
-              :class="konsultasi.color"
-              onclick="smoothToPricing('pricing-soft-ui')"
-              >{{ konsultasi.label }}</a
+          <li class="nav-item dropdown dropdown-hover mx-2">
+            <RouterLink
+              :to="{ name: 'konsultasi' }"
+              class="nav-link ps-2 d-flex cursor-pointer align-items-center"
             >
+              <span>Konsultasi</span>
+            </RouterLink>
           </li>
         </ul>
       </div>

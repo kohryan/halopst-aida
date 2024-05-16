@@ -18,9 +18,9 @@ const props = defineProps({
     default: () => 
     (
       {
-        route: "/konsultasi",
-        color: "bg-gradient-danger",
-        label: "Konsultasi Sekarang"
+        route: "/login",
+        color: "bg-gradient-success",
+        label: "Login"
       }
     )
   },
