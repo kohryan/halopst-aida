@@ -15,13 +15,15 @@ import PetugasKonsultasi from "./Sections/PetugasKonsultasi.vue";
 // Reactive data for body class
 const bodyClass = ref("about-us bg-gray-200");
 
-// Hooks
+//hooks
+const body = document.getElementsByTagName("body")[0];
 onMounted(() => {
-  document.body.classList.add(...bodyClass.value.split(" "));
+  body.classList.add("konsultasi-page");
+  body.classList.add("bg-gray-200");
 });
-
 onUnmounted(() => {
-  document.body.classList.remove(...bodyClass.value.split(" "));
+  body.classList.remove("konsultasi-page");
+  body.classList.remove("bg-gray-200");
 });
 </script>
 <template>
