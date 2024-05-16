@@ -1,27 +1,27 @@
 <script setup>
-import { onMounted, onUnmounted } from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 
-//example components
+// Example components
 import NavbarKonsultasi from "../../../examples/navbars/NavbarKonsultasi.vue";
 import DefaultFooter from "../../../examples/footers/FooterDefault.vue";
 
-//image
+// Image
 import bg0 from "@/assets/img/bg9.jpg";
 
-//sections
+// Sections
 import Tahapan from "./Sections/TahapKonsultasi.vue";
 import PetugasKonsultasi from "./Sections/PetugasKonsultasi.vue"; 
 
-const body = document.getElementsByTagName("body")[0];
-//hooks
+// Reactive data for body class
+const bodyClass = ref("about-us bg-gray-200");
+
+// Hooks
 onMounted(() => {
-  body.classList.add("about-us");
-  body.classList.add("bg-gray-200");
+  document.body.classList.add(...bodyClass.value.split(" "));
 });
 
 onUnmounted(() => {
-  body.classList.remove("about-us");
-  body.classList.remove("bg-gray-200");
+  document.body.classList.remove(...bodyClass.value.split(" "));
 });
 </script>
 <template>
