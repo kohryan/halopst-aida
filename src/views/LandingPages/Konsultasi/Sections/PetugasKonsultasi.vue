@@ -1,4 +1,6 @@
 <script setup>
+import CariWilayah from "./CariWilayahKonsultasi.vue";
+
 // example component
 import PetugasKonsultasiCard from "@/examples/cards/teamCards/PetugasKonsultasiCard.vue";
 import MaterialPagination from "@/components/MaterialPagination.vue";
@@ -8,14 +10,18 @@ import MaterialPaginationItem from "@/components/MaterialPaginationItem.vue";
 import arih from "@/assets/img/arih.jpg";
 import ode from "@/assets/img/ode.jpg";
 import peni from "@/assets/img/peni.jpg";
-import pramana from "@/assets/img/pramana.jpg";
+
+import SpesialisasiKonsultasi from "./SpesialisasiKonsultasi.vue";
 </script>
 
 <template>
   <section class="pb-5 satker-relative bg-gradient-dark mx-n3">
     <div class="container">
       <div class="row">
-        <div class="col-md-8 text-start mb-5 mt-5">
+        <div class="col-md-6 text-start mb-3 mt-5">
+          <CariWilayah />
+        </div>
+        <div class="col-md-12 text-start mb-5">
           <h3 class="text-white z-index-1 satker-relative">
             Konsultasi Umum
           </h3>
@@ -84,6 +90,7 @@ import pramana from "@/assets/img/pramana.jpg";
           </p>
         </div>
       </div>
+      <SpesialisasiKonsultasi />
     </div>
   </section>
 </template>

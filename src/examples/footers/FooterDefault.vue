@@ -18,23 +18,27 @@ defineProps({
     default: () => [
       {
         icon: '<i class="fab fa-facebook text-lg opacity-8"></i>',
-        link: "https://www.facebook.com/CreativeTim/"
+        link: "https://www.facebook.com/bpsjatim/"
       },
       {
         icon: '<i class="fab fa-twitter text-lg opacity-8"></i>',
-        link: "https://twitter.com/creativetim"
+        link: "https://twitter.com/bpsjatim"
       },
       {
-        icon: '<i class="fab fa-dribbble text-lg opacity-8"></i>',
-        link: "https://dribbble.com/creativetim"
+        icon: '<i class="fab fa-instagram text-lg opacity-8"></i>',
+        link: "https://instagram.com/bpsjatim"
       },
       {
-        icon: '<i class="fab fa-github text-lg opacity-8"></i>',
-        link: "https://github.com/creativetimofficial"
+        icon: '<i class="fab fa-tiktok text-lg opacity-8"></i>',
+        link: "https://www.tiktok.com/@bpsjatim"
+      },
+      {
+        icon: '<i class="fab fa-whatsapp text-lg opacity-8"></i>',
+        link: "https://whatsapp.com/channel/0029VaYvI8NFSAtAGl8Whb20"
       },
       {
         icon: '<i class="fab fa-youtube text-lg opacity-8"></i>',
-        link: "https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w"
+        link: "https://www.youtube.com/@BPSProvinsiJawaTimur"
       }
     ]
   },

@@ -10,7 +10,7 @@ import bg0 from "@/assets/img/bg9.jpg";
 
 //sections
 import Tahapan from "./Sections/TahapKonsultasi.vue";
-import PetugasKonsultasi from "./Sections/PetugasKonsultasi.vue";
+import PetugasKonsultasi from "./Sections/PetugasKonsultasi.vue"; 
 
 const body = document.getElementsByTagName("body")[0];
 //hooks

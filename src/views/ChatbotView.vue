@@ -1,7 +1,132 @@
+<script>
+  // Example components
+  import NavbarDefault from "../examples/navbars/NavbarDefault.vue";
+  import DefaultFooter from "../examples/footers/FooterDefault.vue";
+
+  const apiKey = "2ad01e6a21b015ea1ff8805ced02600c/";
+  import axios from "axios";
+
+  export default {
+    name: "ChatbotView",
+    components: { NavbarDefault, DefaultFooter },
+    data() {
+      return {
+        message: "",
+        messages: [
+          // Initial message
+          {
+            text: "Selamat datang di Chatbot PST DIGITAL, ada yang bisa saya bantu?",
+            owner: "chatbot",
+          },
+        ],
+        faqs: [
+          {
+            button: "Publikasi Pertanian di Jawa Timur",
+            type: "publication",
+            keyword: "pertanian",
+          },
+          {
+            button: "Data Kemiskinan di Jawa Timur",
+            type: "statictable",
+            keyword: "kemiskinan",
+          },
+          {
+            button: "Perkembangan Ekspor Impor",
+            type: "pressrelease",
+            keyword: "ekspor impor",
+          },
+        ],
+      };
+    },
+    methods: {
+      sendMessage() {
+        if (this.message.trim() !== "") {
+          this.messages.push({ text: this.message, owner: "user" });
+          this.$nextTick(() => {
+            const chatContent = this.$refs.chatContent;
+            chatContent.scrollTop = chatContent.scrollHeight;
+          });
+          this.sendBotResponse(this.message);
+          this.message = "";
+        }
+      },
+      async sendFAQ(faqText) {
+        this.messages.push({ text: faqText.button, owner: "user" });
+        this.$nextTick(() => {
+          const chatContent = this.$refs.chatContent;
+          chatContent.scrollTop = chatContent.scrollHeight;
+        });
+        try {
+          const url = `https://webapi.bps.go.id/v1/api/list/model/${faqText.type}/lang/ind/domain/3500/keyword/${faqText.keyword}/key/${apiKey}`;
+          const response = await axios.get(url);
+
+          // Get array from API response
+          const data = response.data.data[1];
+
+          let listResponse = ""; // Initialize string to store response in list format
+
+          if (faqText.type === "publication") {
+            // If request type is publication, display publication links
+            data.forEach((item) => {
+              listResponse += `- ${item.title}: ${item.pdf}\n`;
+            });
+          } else if (faqText.type === "statictable") {
+            // If request type is static table, display static table data
+            data.forEach((item) => {
+              // Display relevant information from static table
+              listResponse += `- ${item.title}: ${item.excel}\n`;
+            });
+          } else if (faqText.type === "pressrelease") {
+            // If request type is press release, display press release links
+            data.forEach((item) => {
+              listResponse += `- ${item.title}: ${item.pdf}\n`;
+            });
+          }
+
+          // Add response in list format to a single chat bubble gradually
+          const lines = listResponse.trim().split("\n");
+          for (let i = 0; i < lines.length; i++) {
+            this.messages.push({ text: lines[i], owner: "chatbot" });
+            await new Promise((resolve) => setTimeout(resolve, 1000)); // Wait for 1 second before adding the next item
+            this.$nextTick(() => {
+              const chatContent = this.$refs.chatContent;
+              chatContent.scrollTop = chatContent.scrollHeight; // Scroll down after adding each item
+            });
+          }
+        } catch (error) {
+          console.error("Error fetching data from API:", error);
+          this.messages.push({
+            text: "Maaf, terjadi kesalahan dalam memperoleh data dari API.",
+            owner: "chatbot",
+          });
+        }
+      },
+
+      sendBotResponse(message) {
+        const response = "Berikut ini adalah hasil pencarian dari " + message;
+        setTimeout(() => {
+          this.messages.push({ text: response, owner: "chatbot" });
+          this.$nextTick(() => {
+            const chatContent = this.$refs.chatContent;
+            chatContent.scrollTop = chatContent.scrollHeight;
+          });
+        }, 1000);
+      },
+    },
+  };
+</script>
+
 <template>
   <section>
     <div>
-      <NavbarDefault />
+      <NavbarDefault
+        :action="{
+        route: 'javascript:;',
+        label: 'Buy Now',
+        color: 'btn-white',
+        }"
+      />
+    <div class="card card-body blur shadow-blur mx-3 mx-md-4 mt-4">
       <div class="container">
         <!-- Desktop -->
         <div class="d-none d-md-block">
@@ -105,6 +230,7 @@
         </div>
       </div>
     </div>
+  </div>
 
     <!-- Mobile -->
     <div class="d-sm-block d-md-none">
@@ -171,123 +297,8 @@
     </div>
 
   </section>
+  <DefaultFooter />
 </template>
-
-<script>
-import NavbarDefault from "../examples/navbars/NavbarDefault.vue";
-
-const apiKey = "2ad01e6a21b015ea1ff8805ced02600c/";
-import axios from "axios";
-
-export default {
-  name: "ChatbotView",
-  components: {},
-  data() {
-    return {
-      message: "",
-      messages: [
-        // Pesan awal
-        {
-          text: "Selamat datang di Chatbot PST DIGITAL, ada yang bisa saya bantu?",
-          owner: "chatbot",
-        },
-      ],
-      faqs: [
-        {
-          button: "Publikasi Pertanian di Jawa Timur",
-          type: "publication",
-          keyword: "pertanian",
-        },
-        {
-          button: "Data Kemiskinan di Jawa Timur",
-          type: "statictable",
-          keyword: "kemiskinan",
-        },
-        {
-          button: "Perkembangan Ekspor Impor",
-          type: "pressrelease",
-          keyword: "ekspor impor",
-        },
-      ],
-    };
-  },
-  methods: {
-    sendMessage() {
-      if (this.message.trim() !== "") {
-        this.messages.push({ text: this.message, owner: "user" });
-        this.$nextTick(() => {
-          const chatContent = this.$refs.chatContent;
-          chatContent.scrollTop = chatContent.scrollHeight;
-        });
-        this.sendBotResponse(this.message);
-        this.message = "";
-      }
-    },
-    async sendFAQ(faqText) {
-      this.messages.push({ text: faqText.button, owner: "user" });
-      this.$nextTick(() => {
-        const chatContent = this.$refs.chatContent;
-        chatContent.scrollTop = chatContent.scrollHeight;
-      });
-      try {
-        const url = `https://webapi.bps.go.id/v1/api/list/model/${faqText.type}/lang/ind/domain/3500/keyword/${faqText.keyword}/key/${apiKey}`;
-        const response = await axios.get(url);
-
-        // Mengambil array dari respons API
-        const data = response.data.data[1];
-
-        let listResponse = ""; // Inisialisasi string untuk menyimpan respon dalam bentuk list
-
-        if (faqText.type === "publication") {
-          // Jika jenis permintaan adalah publikasi, tampilkan link publikasi
-          data.forEach((item) => {
-            listResponse += `- ${item.title}: ${item.pdf}\n`;
-          });
-        } else if (faqText.type === "statictable") {
-          // Jika jenis permintaan adalah static table, tampilkan data static table
-          data.forEach((item) => {
-            // Tampilkan informasi yang relevan dari static table
-            listResponse += `- ${item.title}: ${item.excel}\n`;
-          });
-        } else if (faqText.type === "pressrelease") {
-          // Jika jenis permintaan adalah press release, tampilkan link press release
-          data.forEach((item) => {
-            listResponse += `- ${item.title}: ${item.pdf}\n`;
-          });
-        }
-
-        // Tambahkan respon dalam bentuk list ke dalam satu bubble chat secara perlahan
-        const lines = listResponse.trim().split("\n");
-        for (let i = 0; i < lines.length; i++) {
-          this.messages.push({ text: lines[i], owner: "chatbot" });
-          await new Promise((resolve) => setTimeout(resolve, 1000)); // Tunggu 1 detik sebelum menambahkan item berikutnya
-          this.$nextTick(() => {
-            const chatContent = this.$refs.chatContent;
-            chatContent.scrollTop = chatContent.scrollHeight; // Scroll ke bawah setelah menambahkan setiap item
-          });
-        }
-      } catch (error) {
-        console.error("Error fetching data from API:", error);
-        this.messages.push({
-          text: "Maaf, terjadi kesalahan dalam memperoleh data dari API.",
-          owner: "chatbot",
-        });
-      }
-    },
-
-    sendBotResponse(message) {
-      const response = "Berikut ini adalah hasil pencarian dari " + message;
-      setTimeout(() => {
-        this.messages.push({ text: response, owner: "chatbot" });
-        this.$nextTick(() => {
-          const chatContent = this.$refs.chatContent;
-          chatContent.scrollTop = chatContent.scrollHeight;
-        });
-      }, 1000);
-    },
-  },
-};
-</script>
 
 <style scoped>
 .container {
