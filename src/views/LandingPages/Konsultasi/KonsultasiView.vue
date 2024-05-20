@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, onUnmounted } from "vue";
 
 // Example components
 import NavbarKonsultasi from "../../../examples/navbars/NavbarKonsultasi.vue";
@@ -12,9 +12,6 @@ import bg0 from "@/assets/img/bg9.jpg";
 import Tahapan from "./Sections/TahapKonsultasi.vue";
 import PetugasKonsultasi from "./Sections/PetugasKonsultasi.vue"; 
 
-// Reactive data for body class
-const bodyClass = ref("konsultasi bg-gray-200");
-
 //hooks
 const body = document.getElementsByTagName("body")[0];
 onMounted(() => {
@@ -26,6 +23,7 @@ onUnmounted(() => {
   body.classList.remove("bg-gray-200");
 });
 </script>
+
 <template>
   <NavbarKonsultasi
     :action="{
