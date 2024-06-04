@@ -1,5 +1,7 @@
 <script setup>
-defineProps({
+import { RouterLink } from 'vue-router';
+
+const props = defineProps({
   image: {
     type: String,
     required: true,
@@ -14,38 +16,36 @@ defineProps({
   },
   action: {
     type: Array,
-    route: String,
-    label: String,
-    color: String,
     required: true,
   },
 });
 </script>
+
 <template>
   <div
-    class="back-warning back-background"
+    class="back-info back-background"
     :style="{
-      backgroundImage: `url(${image})`,
+      backgroundImage: `url(${props.image})`,
       backgroundSize: 'cover',
     }"
   >
-  <div class="card-body pt-5 text-center">
+    <div class="card-body pt-5 text-center">
       <a class="d-block blur-shadow-image">
-        <img src="../../../assets/img/illustrations/buku.png" width="40%" class="img-fluid mb-2 border-radius-lg" />
+        <img src="../../../assets/img/illustrations/jadwal.png" width="40%" class="img-fluid mb-2 border-radius-lg" />
       </a>
       <p class="text-white">
-        {{ description }}
+        {{ props.description }}
       </p>
       <div class="buttons-group">
-        <a
-          v-for="({ route, color, label }, index) of action"
+        <RouterLink
+          v-for="({ route, color, label }, index) in props.action"
           :key="index"
-          :href="route"
-          target="_blank"
+          :to="route"
           class="btn btn-sm mt-3 inline-block ms-1"
           :class="`${color ? `btn-${color}` : 'btn-white'}`"
-          >{{ label }}</a
         >
+          {{ label }}
+        </RouterLink>
       </div>
     </div>
   </div>
