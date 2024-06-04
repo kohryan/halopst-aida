@@ -148,11 +148,12 @@ watch(
         class="arrow"
       />
       </RouterLink>
-      <a
-        href="/konsultasi"
+      <RouterLink
+        :to="{ name: 'konsultasi' }"
         class="btn btn-sm bg-gradient-success mb-0 ms-auto d-lg-none d-block"
-        >Konsultasi</a
       >
+        <span>Konsultasi</span>
+      </RouterLink>
       <button
         class="navbar-toggler shadow-none ms-2"
         type="button"
@@ -192,13 +193,13 @@ watch(
         </ul>
         <ul class="navbar-nav d-lg-block d-none">
           <li class="nav-item mx-2">
-            <a
-              :href="konsultasi.route"
+            <RouterLink
+              :to="{ name: 'konsultasi' }"
               class="btn btn-sm mb-0"
               :class="konsultasi.color"
               onclick="smoothToPricing('pricing-soft-ui')"
-              >{{ konsultasi.label }}</a
-            >
+              >{{ konsultasi.label }}
+            </RouterLink>
           </li>
         </ul>
       </div>

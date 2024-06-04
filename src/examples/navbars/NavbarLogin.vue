@@ -148,11 +148,12 @@ watch(
         class="arrow"
       />
       </RouterLink>
-      <a
-        href="/konsultasi"
+      <RouterLink
+        :to="{ name: 'konsultasi' }"
         class="btn btn-sm bg-gradient-success mb-0 ms-auto d-lg-none d-block"
-        >Konsultasi</a
       >
+        <span>Konsultasi</span>
+      </RouterLink>
       <button
         class="navbar-toggler shadow-none ms-2"
         type="button"
