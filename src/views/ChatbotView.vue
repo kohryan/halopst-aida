@@ -77,10 +77,12 @@
   
   .user-message .message-content {
     background-color: #d1e7dd;
+    border-radius: 15px 15px 0 15px;
   }
   
   .ai-message .message-content {
     background-color: #f8d7da;
+    border-radius: 15px 15px 15px 0;
   }
   
   .avatar {
@@ -93,7 +95,6 @@
   .message-content {
     max-width: 70%;
     padding: 10px;
-    border-radius: 10px;
     word-wrap: break-word;
   }
   

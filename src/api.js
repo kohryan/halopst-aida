@@ -25,6 +25,9 @@ function formatToHtml(text) {
   if (formattedText.includes('<li>')) {
     formattedText = formattedText.replace(/(<li>.*<\/li>)/g, '<ul>$1</ul>');
   }
+  // Convert URLs to <a href="...">...</a>
+  formattedText = formattedText.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
+
   return formattedText;
 }
 
