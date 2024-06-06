@@ -17,14 +17,33 @@ const generationConfig = {
 
 function formatToHtml(text) {
   let formattedText = text;
-  // Convert **bold** to <strong>bold</strong>
+
+  // Convert headers (Markdown syntax) to <h1>, <h2>, etc.
+  formattedText = formattedText.replace(/^###### (.*$)/gim, '<h6>$1</h6>');
+  formattedText = formattedText.replace(/^##### (.*$)/gim, '<h5>$1</h5>');
+  formattedText = formattedText.replace(/^#### (.*$)/gim, '<h4>$1</h4>');
+  formattedText = formattedText.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+  formattedText = formattedText.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+  formattedText = formattedText.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+
+  // Convert **bold** to <strong>
   formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-  // Convert * bullet to <li>
-  formattedText = formattedText.replace(/^\* (.*$)/gm, '<li>$1</li>');
-  // Wrap list items in <ul>
+
+  // Convert *italic* to <em>
+  formattedText = formattedText.replace(/\*(.*?)\*/g, '<em>$1</em>');
+
+  // Convert numbered list to <ol><li>
+  formattedText = formattedText.replace(/^\d+\. (.*$)/gim, '<li>$1</li>');
+  if (formattedText.includes('<li>')) {
+    formattedText = formattedText.replace(/(<li>.*<\/li>)/g, '<ol>$1</ol>');
+  }
+
+  // Convert bullet list to <ul><li>
+  formattedText = formattedText.replace(/^\* (.*$)/gim, '<li>$1</li>');
   if (formattedText.includes('<li>')) {
     formattedText = formattedText.replace(/(<li>.*<\/li>)/g, '<ul>$1</ul>');
   }
+
   // Convert URLs to <a href="...">...</a>
   formattedText = formattedText.replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" rel="noopener noreferrer">$1</a>');
 
