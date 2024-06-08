@@ -15,6 +15,22 @@ const generationConfig = {
   responseMimeType: 'text/plain',
 };
 
+const systemPrompt = {
+  role: 'system',
+  content: `Kamu adalah Ning Aida, AI Data Assistant BPS Provinsi Jawa Timur yang siap membantu Anda menyediakan data dan informasi statistik seputar BPS.
+
+BPS membuka pelayanan konsultasi data dari hari Senin s.d. Jumat, pukul 08.00-16.00
+
+Produk statistik BPS meliputi tabel data statistik, publikasi statistik, dan Berita Resmi Statistik
+
+Berikut website BPS di Jawa Timur yang bisa menjadi rujukan dalam memperoleh produk statistik BPS:
+1. Provinsi Jawa Timur: https://jatim.bps.go.id
+2. Kabupaten Pacitan: https://pacitankab.bps.go.id
+3. Kabupaten Ponorogo: https://ponorogokab.bps.go.id
+4. Kabupaten Trenggalek: https://trenggalekkab.bps.go.id
+5. Kabupaten Tulungagung: https://tulungagungkab.bps.go.id`
+};
+
 function formatToHtml(text) {
   let formattedText = text;
 
@@ -33,13 +49,13 @@ function formatToHtml(text) {
   formattedText = formattedText.replace(/\*(.*?)\*/g, '<em>$1</em>');
 
   // Convert numbered list to <ol><li>
-  formattedText = formattedText.replace(/^\d+\. (.*$)/gim, '<li>$1</li>');
+  formattedText = formattedText.replace(/^\d+\.\s+(.*)$/gim, '<li>$1</li>');
   if (formattedText.includes('<li>')) {
     formattedText = formattedText.replace(/(<li>.*<\/li>)/g, '<ol>$1</ol>');
   }
 
   // Convert bullet list to <ul><li>
-  formattedText = formattedText.replace(/^\* (.*$)/gim, '<li>$1</li>');
+  formattedText = formattedText.replace(/^\*\s+(.*)$/gim, '<li>$1</li>');
   if (formattedText.includes('<li>')) {
     formattedText = formattedText.replace(/(<li>.*<\/li>)/g, '<ul>$1</ul>');
   }
@@ -50,11 +66,8 @@ function formatToHtml(text) {
   return formattedText;
 }
 
-export async function getAiResponse(userMessage) {
-  const parts = [
-    { text: "Halo, Mbak Aida di sini, AI Data Assistant BPS Provinsi Jawa Timur siap membantu Anda menyediakan data dan informasi statistik seputar BPS.\n\nBPS membuka pelayanan konsultasi data dari hari Senin s.d. Jumat, pukul 08.00-16.00\n\nProduk statistik BPS meliputi tabel data statistik, publikasi statistik, dan Berita Resmi Statistik\n\nBerikut website BPS di Jawa Timur yang bisa menjadi rujukan dalam memperoleh produk statistik BPS:\n1. Provinsi Jawa Timur: https://jatim.bps.go.id\n2. Kabupaten Pacitan: https://pacitankab.bps.go.id\n3. Kabupaten Ponorogo: https://ponorogokab.bps.go.id\n4. Kabupaten Trenggalek: https://trenggalekkab.bps.go.id\n5. Kabupaten Tulungagung: https://tulungagungkab.bps.go.id" },
-    { text: `pertanyaan: ${userMessage}` },
-  ];
+export async function getAiResponse(messages) {
+  const parts = [systemPrompt, ...messages].map(message => ({ text: message.content }));
 
   try {
     const result = await model.generateContent({
@@ -67,5 +80,24 @@ export async function getAiResponse(userMessage) {
   } catch (error) {
     console.error('Error fetching AI response:', error);
     return 'Sorry, there was an error getting the response.';
+  }
+}
+
+export async function getChatSummary(messages) {
+  const parts = [systemPrompt, ...messages, {
+    role: 'user',
+    content: 'Tolong berikan ringkasan judul dari topik yang dibahas. Maksimal 5 kata saja'
+  }].map(message => ({ text: message.content }));
+
+  try {
+    const result = await model.generateContent({
+      contents: [{ role: 'user', parts }],
+      generationConfig,
+    });
+
+    return result.response.text();
+  } catch (error) {
+    console.error('Error fetching chat summary:', error);
+    return 'Conversation Summary';
   }
 }
