@@ -127,7 +127,7 @@ export async function getAiResponse(messages) {
     return formattedResponse;
   } catch (error) {
     console.error('Error fetching AI response:', error);
-    return 'Sorry, there was an error getting the response.';
+    return 'Maaf, saya sudah mencapai limit. Tunggu satu menit lagi.';
   }
 }
 
