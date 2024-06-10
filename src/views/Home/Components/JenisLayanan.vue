@@ -45,13 +45,13 @@ import RotatingCardBackWarning from "../../../examples/cards/rotatingCards/Rotat
               <RotatingCardFront
               image="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FEEq9xlWAdh88BOK1TjGF%2Fuploads%2FcRA3Uhl8W0qboG5sIMzA%2Fbg-success.png?alt=media&token=691ec035-509c-4dba-97a0-5a6ddfa2412c"
               title="Ngobrol dengan<br /> Mbak AIDA"
-              description="Mbak AIDA (Artificial Intelligence untuk Data Assistant) akan melayani permintaan data Anda selama 24 jam"
+              description="Mbak AIDA (Artificial Intelligence Data Assistant) akan melayani permintaan data Anda selama 24 jam"
               label="🗓️ Setiap Hari, 24 Jam Non Stop"
               />
 
               <RotatingCardBack
               image="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FEEq9xlWAdh88BOK1TjGF%2Fuploads%2FcRA3Uhl8W0qboG5sIMzA%2Fbg-success.png?alt=media&token=691ec035-509c-4dba-97a0-5a6ddfa2412c"
-              description="Harap diingat bahwa meskipun AIDA yang berbasis kecerdasan buatan (AI) berupaya memberikan pelayanan 24 jam non stop, waktu respon yang tidak sebentar mungkin saja bisa terjadi."
+              description="Harap diingat bahwa meskipun AIDA yang berbasis kecerdasan buatan (AI) berupaya memberikan pelayanan 24 jam non stop, AIDA mungkin saja membuat kesalahan saat memberikan informasi"
               :action="[
                 {
                   route: '/aida',
