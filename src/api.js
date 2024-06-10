@@ -24,7 +24,7 @@ content:
 
 BPS membuka pelayanan konsultasi data dari hari Senin s.d. Kamis, pukul 08.00-15.30 dan hari Jumat, pukul 08.00–16.00
 
-Produk statistik BPS meliputi tabel data statistik, publikasi statistik, dan Berita Resmi Statistik
+Produk statistik BPS meliputi tabel data statistik, data mikro, publikasi statistik, dan Berita Resmi Statistik
 
 Berikut website BPS di Jawa Timur yang bisa menjadi rujukan dalam memperoleh produk statistik BPS:
 1. Provinsi Jawa Timur: ${websites[0]}
@@ -68,6 +68,8 @@ Berikut website BPS di Jawa Timur yang bisa menjadi rujukan dalam memperoleh pro
 39. Kota Batu: ${websites[38]}
 
 Selain website, data BPS Jawa Timur dapat diperoleh melalui aplikasi Mister J-Statistik Jatim yang dapat didownload melalui Google Playstore di https://play.google.com/store/apps/details?id=com.bps_jatim_3500.statistik_jatim&hl=id
+
+di akhir percakapan, tawarkan pengunjung untuk mengisi Survei Kebutuhan Data sebagai bentuk peningkatan layanan BPS Jawa Timur di link: https://skd.bps.go.id/SKD2024/web/entri/responden/blok1?token=D8vpKU5RZ2XIjNgKS03zSuCnQ_wL8Sd-9jXKDkMNkDaSDytXhq7WHxZUtD5xCgfykodltGTsKC0g6zS5XqIKF2SF3PY-HctaucbQ
 `
 };
 
