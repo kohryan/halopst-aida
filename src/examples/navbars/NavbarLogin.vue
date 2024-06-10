@@ -2,6 +2,8 @@
 import { RouterLink } from "vue-router";
 import { ref, watch } from "vue";
 import { useWindowsWidth } from "../../assets/js/useWindowsWidth";
+import bootstrap from "bootstrap/dist/js/bootstrap.min.js";
+
 
 // images
 import ArrDark from "@/assets/img/down-arrow-dark.svg";

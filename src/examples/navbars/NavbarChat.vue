@@ -14,17 +14,19 @@ import haloPST from "@/assets/img/halopst-logo.svg";
 const props = defineProps({
   konsultasi: {
     type: Object,
-    route: String,
-    color: String,
-    label: String,
-    default: () => 
-    (
-      {
-        route: "/konsultasi",
-        color: "bg-gradient-danger",
-        label: "Konsultasi Sekarang"
-      }
-    )
+    required: true,
+    default: () => ({
+      route: "/login",
+      color: "bg-gradient-success",
+      label: "Login"
+    }),
+    validator: value => {
+      return (
+        typeof value.route === 'string' &&
+        typeof value.color === 'string' &&
+        typeof value.label === 'string'
+      );
+    }
   },
   transparent: {
     type: Boolean,
@@ -48,7 +50,7 @@ const props = defineProps({
   }
 });
 
-// set arrow  color
+// set arrow color
 function getArrowColor() {
   if (props.transparent && textDark.value) {
     return ArrDark;
@@ -74,7 +76,6 @@ const getTextColor = () => {
 };
 
 // set nav color on mobile && desktop
-
 let textDark = ref(props.darkText);
 const { type } = useWindowsWidth();
 
@@ -95,6 +96,7 @@ watch(
   }
 );
 </script>
+
 <template>
   <nav
     class="navbar navbar-expand-lg top-0"
@@ -104,7 +106,7 @@ watch(
       'my-3 blur border-radius-lg z-index-3 py-2 shadow py-2 start-0 end-0 mx-4 position-absolute mt-4':
         props.sticky,
       'navbar-light bg-white py-3': props.light,
-      ' navbar-dark bg-gradient-dark z-index-3 py-3': props.dark
+      'navbar-dark bg-gradient-dark z-index-3 py-3': props.dark
     }"
   >
     <div
@@ -126,11 +128,11 @@ watch(
         title="Halo PST BPS Jawa Timur"
         data-placement="bottom"
       >
-      <img
-        :src="haloPstBPS"
-        alt="Halo PST BPS Jawa Timur"
-        class="arrow"
-      />
+        <img
+          :src="haloPstBPS"
+          alt="Halo PST BPS Jawa Timur"
+          class="arrow"
+        />
       </RouterLink>
       <RouterLink
         class="navbar-brand d-block d-md-none"
@@ -144,18 +146,16 @@ watch(
         title="Halo PST BPS Jawa Timur"
         data-placement="bottom"
       >
-      <img
-        :src="haloPST"
-        alt="Halo PST BPS Jawa Timur"
-        class="arrow"
-      />
+        <img
+          :src="haloPST"
+          alt="Halo PST BPS Jawa Timur"
+          class="arrow"
+        />
       </RouterLink>
       <RouterLink
         :to="{ name: 'konsultasi' }"
         class="btn btn-sm bg-gradient-success mb-0 ms-auto d-lg-none d-block"
-      >
-        <span>Konsultasi</span>
-      </RouterLink>
+      >Konsultasi</RouterLink>
       <button
         class="navbar-toggler shadow-none ms-2"
         type="button"
@@ -194,22 +194,21 @@ watch(
           </li>
           <li class="nav-item dropdown dropdown-hover mx-2">
             <RouterLink
-              :to="{ name: 'aida' }"
+              :to="{ name: 'konsultasi' }"
               class="nav-link ps-2 d-flex cursor-pointer align-items-center"
             >
-              <span>Chat AI</span>
+              <span>Konsultasi</span>
             </RouterLink>
           </li>
         </ul>
         <ul class="navbar-nav d-lg-block d-none">
           <li class="nav-item mx-2">
             <RouterLink
-              :to="{ name: 'konsultasi' }"
+              :to="konsultasi.route"
               class="btn btn-sm mb-0"
               :class="konsultasi.color"
-              onclick="smoothToPricing('pricing-soft-ui')"
-              >{{ konsultasi.label }}
-              </RouterLink>
+              @click.native="smoothToPricing('pricing-soft-ui')"
+            >{{ konsultasi.label }}</RouterLink>
           </li>
         </ul>
       </div>

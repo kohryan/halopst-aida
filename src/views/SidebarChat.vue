@@ -1,7 +1,10 @@
 <template>
   <div class="sidebar">
-    <img class="logo" src="@/assets/img/halopst-logo.svg" alt="Logo" />
+    <img class="logo" src="@/assets/img/aida.svg" alt="Logo" />
     <hr class="hairline" />
+    <div class="note">
+      AIDA dapat membuat kesalahan dan memberikan informasi yang kurang akurat. Tetap mengacu pada Website BPS atau gunakan menu Konsultasi untuk informasi yang lebih rinci.
+    </div>
     <button class="new-chat-button" @click="startNewChat">Obrolan Baru</button>
     <div class="chat-history">
       <h3>Kenangan bersama AIDA:</h3>
@@ -22,7 +25,7 @@
 
 <script>
 export default {
-  name: 'Sidebar',
+  name: 'SidebarChat',
   props: ['chats'],
   methods: {
     loadChat(chat) {
@@ -40,7 +43,7 @@ export default {
 
 <style scoped>
 .sidebar {
-  width: 250px;
+  width: 300px;
   background-color: #f1f5f9;
   display: flex;
   flex-direction: column;
@@ -52,20 +55,29 @@ export default {
 .logo {
   width: 100%;
   height: auto;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .hairline {
   width: 100%;
+  margin: 5px;
   border: 0;
   border-top: 1px solid #cbd5e1;
+}
+
+.note {
+  font-size: 12px;
+  color: #6b7280;
+  text-align: center;
   margin-bottom: 20px;
+  padding: 0 10px;
 }
 
 .new-chat-button {
-  margin-bottom: 20px;
-  padding: 10px;
-  width: 100%;
+  font-size: 11pt;
+  margin-bottom: 15px;
+  padding: 8px;
+  width: 75%;
   background-color: #28a745;
   color: white;
   border: none;
@@ -80,16 +92,19 @@ export default {
 
 .chat-history {
   width: 100%;
+  overflow-y: auto;
+  max-height: 70vh;
 }
 
 .chat-history h3 {
-  font-size: medium;
+  font-size: 12pt;
   font-weight: 500;
   text-align: center;
   margin-bottom: 10px;
 }
 
 .chat-history ul {
+  font-size: 11pt;
   list-style-type: none;
   padding: 0;
 }
@@ -121,5 +136,17 @@ export default {
   fill: white;
   width: 16px;
   height: 16px;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    display: none;
+  }
+  .sidebar {
+    width: 100%;
+  }
+  .chat-history {
+    max-height: 50vh;
+  }
 }
 </style>

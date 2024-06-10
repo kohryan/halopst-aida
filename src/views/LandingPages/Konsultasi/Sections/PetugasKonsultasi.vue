@@ -15,7 +15,7 @@ import SpesialisasiKonsultasi from "./SpesialisasiKonsultasi.vue";
 </script>
 
 <template>
-  <section class="pb-5 satker-relative bg-gradient-dark mx-n3">
+  <section id="pilih" class="pb-5 satker-relative bg-gradient-dark mx-n3">
     <div class="container">
       <div class="row">
         <div class="col-md-6 text-start mb-3 mt-5">

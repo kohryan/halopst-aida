@@ -116,7 +116,7 @@ onUnmounted(() => {
                   Mister J-Statistik Jatim
                 </h2>
                 <h3 class="text-white text-xl font-weight-normal">
-                  Akses berbagai Data Statistik Jawa Timur semudah sentuhan jari
+                  Akses berbagai Data Statistik Jawa Timur <br/> <i>semudah sentuhan jari</i>
                 </h3>
 
                 <a

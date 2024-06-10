@@ -1,28 +1,56 @@
 <template>
-  <div class="chat-layout">
-    <Sidebar @suggestion-clicked="sendMessageFromSidebar" @load-chat="loadChatFromSidebar" @new-chat="startNewChat" @delete-chat="deleteChat" :chats="chats" />
-    <div class="chat-window">
-      <div class="messages">
-        <div v-for="(message, index) in messages" :key="index" :class="['message', message.role]">
-          <img :src="message.role === 'user' ? userAvatar : aiAvatar" class="avatar" />
-          <div class="text" v-html="formatMessage(message.content)"></div>
+  <div>
+    <NavbarChat
+      :action="{
+        route: 'javascript:;',
+        label: 'Buy Now',
+        color: 'btn-white',
+      }"
+    />
+    <div class="chat-layout">
+      <Sidebar 
+        v-if="isSidebarVisible"
+        @suggestion-clicked="sendMessageFromSidebar" 
+        @load-chat="loadChatFromSidebar" 
+        @new-chat="startNewChat" 
+        @delete-chat="deleteChat" 
+        :chats="chats" 
+      />
+      <div class="chat-window">
+        <div class="breadcrumb">
+          <button @click="toggleSidebar" class="breadcrumb-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="24px" height="24px">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M3 7h18v2H3z"/>
+                <path d="M3 15h13.5v2H3z"/>
+            </svg>
+          </button>
+          <span v-if="chatSummary" class="text-bold" style="margin-left:10px;">{{ chatSummary }}</span>
         </div>
-      </div>
-      <div class="input-box">
-        <input v-model="userInput" @keyup.enter="sendMessage" placeholder="Ketik curhatanmu ke Ning AIDA (misal: berikan insight tentang Data Kemiskinan) . . ." />
-        <button @click="sendMessage">Kirim</button>
+        <div class="messages">
+          <div v-for="(message, index) in messages" :key="index" :class="['message', message.role]">
+            <img :src="message.role === 'user' ? userAvatar : aiAvatar" class="avatar" />
+            <div class="text" v-html="formatMessage(message.content)"></div>
+          </div>
+        </div>
+        <div class="input-box">
+          <input v-model="userInput" @keyup.enter="sendMessage" placeholder="Ketik curhatanmu ke Ning AIDA (misal: berikan insight tentang Data Kemiskinan) . . ." />
+          <button @click="sendMessage">Kirim</button>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import NavbarChat from "../examples/navbars/NavbarChat.vue";
 import Sidebar from './SidebarChat.vue';
 import { getAiResponse, getChatSummary } from '../api';
 
 export default {
-  name: 'Chat',
+  name: 'ChatbotView',
   components: {
+    NavbarChat,
     Sidebar
   },
   data() {
@@ -32,10 +60,14 @@ export default {
       chats: JSON.parse(localStorage.getItem('chatHistories')) || [],
       userAvatar: 'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png',
       aiAvatar: 'https://images.playground.com/627e2753d36d422d8d8dab3dd2e9b8d1.jpeg',
-      chatSummary: null
+      chatSummary: null,
+      isSidebarVisible: true // Menambah data untuk mengatur visibilitas sidebar
     };
   },
   methods: {
+    toggleSidebar() {
+      this.isSidebarVisible = !this.isSidebarVisible;
+    },
     async sendMessageFromSidebar(message) {
       this.messages.push({ role: 'user', content: message });
       this.saveMessages();
@@ -74,19 +106,18 @@ export default {
     },
     loadChatFromSidebar(chat) {
       this.messages = chat.messages;
-      this.chatSummary = chat.summary; // Load the summary
+      this.chatSummary = chat.summary;
       localStorage.setItem('currentChat', JSON.stringify(this.messages));
     },
     startNewChat() {
       this.messages = [];
-      this.chatSummary = null; // Reset the summary
+      this.chatSummary = null;
       localStorage.setItem('currentChat', JSON.stringify(this.messages));
     },
     deleteChat(index) {
       this.chats.splice(index, 1);
       localStorage.setItem('chatHistories', JSON.stringify(this.chats));
 
-      // If the deleted chat is the currently active chat, clear the messages
       if (this.chats.length === 0) {
         this.startNewChat();
       } else {
@@ -107,7 +138,7 @@ export default {
       const existingChats = JSON.parse(localStorage.getItem('chatHistories')) || [];
 
       const updatedChats = existingChats.filter(chat => chat.summary !== newChat.summary);
-      updatedChats.push(newChat);
+      updatedChats.unshift(newChat);
 
       localStorage.setItem('chatHistories', JSON.stringify(updatedChats));
       this.chats = updatedChats;
@@ -117,7 +148,7 @@ export default {
         .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
         .replace(/\*(.*?)\*/g, '<em>$1</em>')
         .replace(/\n/g, '<br>')
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
         .replace(/^\d+\.\s/gm, (match) => `<br>${match}`);
     }
   }
@@ -135,6 +166,7 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: white;
+  height: 100vh; /* Ensure chat window takes full screen height */
 }
 
 .messages {
@@ -173,7 +205,7 @@ export default {
 }
 
 .message.ai .text {
-  background-color: transparent;
+  background-color: #fff;
   color: #333;
 }
 
@@ -196,6 +228,8 @@ export default {
   padding: 10px;
   background-color: #f1f5f9;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+  position: sticky; /* Make the input box sticky */
+  bottom: 0; /* Stick to the bottom */
 }
 
 input {
@@ -217,5 +251,33 @@ button {
 
 button:hover {
   background-color: #0056b3;
+}
+
+.breadcrumb {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.breadcrumb-toggle {
+  background: #007bff;
+  border: none;
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .chat-layout {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+  }
+
+  .chat-window {
+    height: calc(100vh - 50px); /* Adjust to make room for breadcrumb */
+  }
 }
 </style>

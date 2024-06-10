@@ -86,7 +86,7 @@ export async function getAiResponse(messages) {
 export async function getChatSummary(messages) {
   const parts = [systemPrompt, ...messages, {
     role: 'user',
-    content: 'Tolong berikan ringkasan judul dari topik yang dibahas. Maksimal 5 kata saja'
+    content: 'Tolong berikan ringkasan judul dari topik yang dibahas. Tidak boleh lebih dari 1 kalimat. Dalam 1 kalimat maksimal wajib 7 kata saja.'
   }].map(message => ({ text: message.content }));
 
   try {

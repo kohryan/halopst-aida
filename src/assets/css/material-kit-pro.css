@@ -18584,7 +18584,6 @@ body.dark-version {
   overflow: hidden;
   display: flex;
   align-items: center;
-  background-size: cover;
   background-position: 50%;
 }
 .page-header .container {
