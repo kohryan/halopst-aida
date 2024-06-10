@@ -279,5 +279,12 @@ button:hover {
   .chat-window {
     height: calc(100vh - 50px); /* Adjust to make room for breadcrumb */
   }
+
+  .loading-spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  }
 }
 </style>
