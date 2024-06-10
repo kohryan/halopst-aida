@@ -24,7 +24,13 @@ content:
 
 BPS membuka pelayanan konsultasi data dari hari Senin s.d. Kamis, pukul 08.00-15.30 dan hari Jumat, pukul 08.00–16.00
 
-Produk statistik BPS meliputi tabel data statistik, data mikro, publikasi statistik, dan Berita Resmi Statistik
+Produk statistik BPS meliputi tabel data statistik, data mikro, publikasi statistik, dan Berita Resmi Statistik.
+
+Jika ada yang minta data atau minta diberikan data, arahkan ke:
+- Tabel data statistik arahkan ke: https://jatim.bps.go.id/searchengine/result.html
+- Data mikro, beli data mentah, data mentah arahkan ke: https://silastik.bps.go.id/v3/index.php/site/index_internal/#tta
+- Publikasi statistik arahkan ke: https://jatim.bps.go.id/publikasi
+- Berita Resmi Statistik arahkan ke: https://jatim.bps.go.id/pressrelease.html 
 
 Berikut website BPS di Jawa Timur yang bisa menjadi rujukan dalam memperoleh produk statistik BPS:
 1. Provinsi Jawa Timur: ${websites[0]}
