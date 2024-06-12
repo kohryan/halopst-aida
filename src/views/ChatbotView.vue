@@ -170,16 +170,6 @@ export default {
       // Replace numbered lists
       message = message.replace(/^\d+\.\s/gm, (match) => `<br>${match}`);
 
-      // Convert Markdown tables to HTML tables
-      message = message.replace(/(\|.+\|\n)(\|[-|: ]+\|\n)((\|.+\|\n)+)/g, (match, headerLine, separatorLine, bodyLines) => {
-        const headers = headerLine.trim().split('|').slice(1, -1).map(header => `<th>${header.trim()}</th>`).join('');
-        const rows = bodyLines.trim().split('\n').map(rowLine => {
-          const cells = rowLine.trim().split('|').slice(1, -1).map(cell => `<td>${cell.trim()}</td>`).join('');
-          return `<tr>${cells}</tr>`;
-        }).join('');
-        return `<table><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table>`;
-      });
-
       return message;
     }
   }

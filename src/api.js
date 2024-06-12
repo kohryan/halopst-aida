@@ -8,41 +8,6 @@ const model = genAI.getGenerativeModel({
   model: 'gemini-1.5-flash',
 });
 
-const axios = require('axios');
-const cheerio = require('cheerio');
-
-const API_URL = 'https://webapi.bps.go.id/v1/api/domain/type/kabbyprov/prov/35/key/20b7b629ff223073385f5bfb3e22436f/';
-const BASE_URL = 'https://jatim.bps.go.id';
-
-async function fetchApiData() {
-  try {
-    const response = await axios.get(API_URL);
-    const data = response.data;
-    return data;
-  } catch (error) {
-    console.error('Error fetching API data:', error);
-    return null;
-  }
-}
-
-async function fetchWebsiteContent() {
-  try {
-    const response = await axios.get(BASE_URL);
-    const html = response.data;
-    const $ = cheerio.load(html);
-    let content = '';
-
-    $('section').each((i, element) => {
-      content += $(element).text() + '\n';
-    });
-
-    return content;
-  } catch (error) {
-    console.error('Error fetching website content:', error);
-    return '';
-  }
-}
-
 const generationConfig = {
   temperature: 1,
   topP: 0.95,
@@ -108,25 +73,12 @@ function formatToHtml(text) {
 
   // Convert URLs to <a href="...">...</a>
   formattedText = formattedText.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
-
-  // Convert Markdown tables to HTML tables
-  formattedText = formattedText.replace(/(\|.*?\|.*?\|\n)(\|[-|: ]+\|\n)((\|.*?\|.*?\|\n)+)/g, (match, headerLine, separatorLine, bodyLines) => {
-    const headers = headerLine.trim().split('|').slice(1, -1).map(header => `<th>${header.trim()}</th>`).join('');
-    const rows = bodyLines.trim().split('\n').map(rowLine => {
-      const cells = rowLine.trim().split('|').slice(1, -1).map(cell => `<td>${cell.trim()}</td>`).join('');
-      return `<tr>${cells}</tr>`;
-    }).join('');
-    return `<table><tr>${headers}</tr>${rows}</table>`;
-  });
   
   return formattedText;
 }
 
 export async function getAiResponse(messages) {
-  const apiData = await fetchApiData(); // Panggil fetchApiData
-  const websiteContent = await fetchWebsiteContent();
-
-  const parts = [{ role: 'system', content: 'Gunakan informasi berikut sebagai konteks:\n' + apiData + websiteContent }, 
+  const parts = [{ role: 'system', content: 'Gunakan informasi berikut sebagai konteks:\n'}, 
     systemPrompt, ...messages].map(message => ({ text: message.content }));
 
   try {
