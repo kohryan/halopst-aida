@@ -159,7 +159,7 @@ export default {
       message = message.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
       
       // Replace *italic* with <em>
-      message = message.replace(/\*(.*?)\*/g, '<em>$1</em>');
+      message = message.replace(/\*(.*?)\*/g, '<em>$1</em>'); 
       
       // Replace newlines with <br>
       message = message.replace(/\n/g, '<br>');
