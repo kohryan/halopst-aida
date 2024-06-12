@@ -32,6 +32,10 @@
             <img :src="message.role === 'user' ? userAvatar : aiAvatar" class="avatar" />
             <div class="text" v-html="formatMessage(message.content)"></div>
           </div>
+          <div v-if="isLoading" class="message ai">
+            <img :src="aiAvatar" class="avatar" />
+            <div class="text-italic">Tunggu sebentar ya, AIDA sedang mengetik...</div>
+          </div>
         </div>
         <div class="input-box">
           <input v-model="userInput" @keyup.enter="sendMessage" placeholder="Ketik curhatanmu ke Ning AIDA (misal: berikan insight tentang Data Kemiskinan) . . ." />
@@ -61,7 +65,8 @@ export default {
       userAvatar: 'https://cdn.icon-icons.com/icons2/2643/PNG/512/male_boy_person_people_avatar_icon_159358.png',
       aiAvatar: 'https://images.playground.com/627e2753d36d422d8d8dab3dd2e9b8d1.jpeg',
       chatSummary: null,
-      isSidebarVisible: true // Menambah data untuk mengatur visibilitas sidebar
+      isSidebarVisible: true,
+      isLoading: false
     };
   },
   methods: {
@@ -72,13 +77,16 @@ export default {
       this.messages.push({ role: 'user', content: message });
       this.saveMessages();
 
+      this.isLoading = true;
       try {
         const aiResponse = await getAiResponse(this.messages);
         this.messages.push({ role: 'ai', content: aiResponse });
+        this.isLoading = false;
         this.saveMessages();
       } catch (error) {
         console.error('Error fetching AI response:', error);
         this.messages.push({ role: 'ai', content: 'Sorry, there was an error getting the response.' });
+        this.isLoading = false;
         this.saveMessages();
       }
     },
@@ -90,13 +98,16 @@ export default {
       this.userInput = '';
       this.saveMessages();
 
+      this.isLoading = true;
       try {
         const aiResponse = await getAiResponse(this.messages);
         this.messages.push({ role: 'ai', content: aiResponse });
+        this.isLoading = false;
         this.saveMessages();
       } catch (error) {
         console.error('Error fetching AI response:', error);
         this.messages.push({ role: 'ai', content: 'Sorry, there was an error getting the response.' });
+        this.isLoading = false;
         this.saveMessages();
       }
     },
@@ -144,12 +155,32 @@ export default {
       this.chats = updatedChats;
     },
     formatMessage(message) {
-      return message
-        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-        .replace(/\*(.*?)\*/g, '<em>$1</em>')
-        .replace(/\n/g, '<br>')
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>')
-        .replace(/^\d+\.\s/gm, (match) => `<br>${match}`);
+      // Replace **bold** with <strong>
+      message = message.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      
+      // Replace *italic* with <em>
+      message = message.replace(/\*(.*?)\*/g, '<em>$1</em>');
+      
+      // Replace newlines with <br>
+      message = message.replace(/\n/g, '<br>');
+
+      // Replace [text](url) with <a href="$2" target="_blank">$1</a>
+      message = message.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank">$1</a>');
+
+      // Replace numbered lists
+      message = message.replace(/^\d+\.\s/gm, (match) => `<br>${match}`);
+
+      // Convert Markdown tables to HTML tables
+      message = message.replace(/(\|.+\|\n)(\|[-|: ]+\|\n)((\|.+\|\n)+)/g, (match, headerLine, separatorLine, bodyLines) => {
+        const headers = headerLine.trim().split('|').slice(1, -1).map(header => `<th>${header.trim()}</th>`).join('');
+        const rows = bodyLines.trim().split('\n').map(rowLine => {
+          const cells = rowLine.trim().split('|').slice(1, -1).map(cell => `<td>${cell.trim()}</td>`).join('');
+          return `<tr>${cells}</tr>`;
+        }).join('');
+        return `<table><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table>`;
+      });
+
+      return message;
     }
   }
 };
@@ -166,7 +197,7 @@ export default {
   display: flex;
   flex-direction: column;
   background-color: white;
-  height: 100vh; /* Ensure chat window takes full screen height */
+  height: 100vh;
 }
 
 .messages {
@@ -228,8 +259,8 @@ export default {
   padding: 10px;
   background-color: #f1f5f9;
   box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-  position: sticky; /* Make the input box sticky */
-  bottom: 0; /* Stick to the bottom */
+  position: sticky;
+  bottom: 0;
 }
 
 input {
@@ -277,14 +308,14 @@ button:hover {
   }
 
   .chat-window {
-    height: calc(100vh - 50px); /* Adjust to make room for breadcrumb */
+    height: calc(100vh - 50px);
   }
 
   .loading-spinner {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
 }
 </style>
