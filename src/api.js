@@ -1,5 +1,5 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
-import { fetchApiData, fetchWebsiteContent } from './scraping';
+
 
 const apiKey = 'AIzaSyBm04Zw9BAbV-B-DhlAkEU2lawDC70FIAs';
 const genAI = new GoogleGenerativeAI(apiKey);
@@ -7,6 +7,41 @@ const genAI = new GoogleGenerativeAI(apiKey);
 const model = genAI.getGenerativeModel({
   model: 'gemini-1.5-flash',
 });
+
+const axios = require('axios');
+const cheerio = require('cheerio');
+
+const API_URL = 'https://webapi.bps.go.id/v1/api/domain/type/kabbyprov/prov/35/key/20b7b629ff223073385f5bfb3e22436f/';
+const BASE_URL = 'https://jatim.bps.go.id';
+
+async function fetchApiData() {
+  try {
+    const response = await axios.get(API_URL);
+    const data = response.data;
+    return data;
+  } catch (error) {
+    console.error('Error fetching API data:', error);
+    return null;
+  }
+}
+
+async function fetchWebsiteContent() {
+  try {
+    const response = await axios.get(BASE_URL);
+    const html = response.data;
+    const $ = cheerio.load(html);
+    let content = '';
+
+    $('section').each((i, element) => {
+      content += $(element).text() + '\n';
+    });
+
+    return content;
+  } catch (error) {
+    console.error('Error fetching website content:', error);
+    return '';
+  }
+}
 
 const generationConfig = {
   temperature: 1,
@@ -81,23 +116,17 @@ function formatToHtml(text) {
       const cells = rowLine.trim().split('|').slice(1, -1).map(cell => `<td>${cell.trim()}</td>`).join('');
       return `<tr>${cells}</tr>`;
     }).join('');
-    return `<table>
-                ${match}
-                ${separatorLine}
-                <thead><tr>${headers}</tr></thead>
-                <tbody>${rows}</tbody>
-            </table>`;
-});
-
-
-
+    return `<table><tr>${headers}</tr>${rows}</table>`;
+  });
   
   return formattedText;
 }
 
 export async function getAiResponse(messages) {
+  const apiData = await fetchApiData(); // Panggil fetchApiData
   const websiteContent = await fetchWebsiteContent();
-  const parts = [{ role: 'system', content: 'Gunakan informasi berikut sebagai konteks:\n' + websiteContent }, 
+
+  const parts = [{ role: 'system', content: 'Gunakan informasi berikut sebagai konteks:\n' + apiData + websiteContent }, 
     systemPrompt, ...messages].map(message => ({ text: message.content }));
 
   try {
@@ -142,4 +171,3 @@ export async function getChatSummary(messages) {
     return 'Ringkasan Percakapan';
   }
 }
-
