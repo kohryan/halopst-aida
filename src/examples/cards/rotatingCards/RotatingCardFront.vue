@@ -4,10 +4,6 @@ defineProps({
     type: String,
     required: true,
   },
-  icon: {
-    type: String,
-    default: "",
-  },
   label: {
     type: String,
     default: "",
@@ -20,17 +16,21 @@ defineProps({
     type: String,
     required: true,
   },
+  label: {
+    type: String,
+    required: true,
+  },
 });
 </script>
 <template>
   <div
-    class="front front-background"
+    class="front-info front-background"
     :style="{
       backgroundImage: `url(${image})`,
       backgroundSize: 'cover',
     }"
   >
-  <div class="card-body py-5 text-center">
+    <div class="card-body py-5 text-center">
       <a class="d-block blur-shadow-image">
         <img src="../../../assets/img/illustrations/aida.png" width="40%" class="img-fluid border-radius-lg" />
       </a>

@@ -31,7 +31,7 @@ const props = defineProps({
   >
     <div class="card-body pt-5 text-center">
       <a class="d-block blur-shadow-image">
-        <img src="../../../assets/img/illustrations/jadwal.png" width="40%" class="img-fluid mb-2 border-radius-lg" />
+        <img src="../../../assets/img/illustrations/publikasi.png" width="40%" class="img-fluid mb-2 border-radius-lg" />
       </a>
       <p class="text-white">
         {{ props.description }}

@@ -25,13 +25,13 @@ const props = defineProps({
   <div
     class="back-info back-background"
     :style="{
-      backgroundImage: `url(${props.image})`,
+      backgroundImage: `url(${props.image})`, 
       backgroundSize: 'cover',
     }"
   >
     <div class="card-body pt-5 text-center">
       <a class="d-block blur-shadow-image">
-        <img src="../../../assets/img/illustrations/jadwal.png" width="40%" class="img-fluid mb-2 border-radius-lg" />
+        <img src="../../../assets/img/illustrations/aida.png" width="40%" class="img-fluid mb-2 border-radius-lg" />
       </a>
       <p class="text-white">
         {{ props.description }}

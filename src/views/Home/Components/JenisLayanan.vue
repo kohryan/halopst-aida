@@ -22,14 +22,14 @@ import RotatingCardBackWarning from "../../../examples/cards/rotatingCards/Rotat
             <div class="col-lg-4 mx-auto p-lg-4 mt-lg-0 mt-2">
               <RotatingCard>
               <RotatingCardFrontInfo
-              image="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FEEq9xlWAdh88BOK1TjGF%2Fuploads%2FQtupDiveVdddaZITFBjr%2Fbg-info.png?alt=media&token=db2dd690-64b7-4bd6-8c4e-e39b3dd8b7ee"
+              image="https://res.cloudinary.com/bpsjatim/image/upload/f_auto,q_auto/bmvkoaikysmhrythzdfm"
               title="Konsultasi dengan<br /> Statistisi Ahli BPS"
               description="Konsultasi secara daring langsung bersama Statistisi Ahli dan Analis Data BPS Jawa Timur yang kompeten di bidangnya."
               label="🗓️ Senin-Jumat, 08.00-16.00"
               />
 
               <RotatingCardBackInfo
-              image="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FEEq9xlWAdh88BOK1TjGF%2Fuploads%2FQtupDiveVdddaZITFBjr%2Fbg-info.png?alt=media&token=db2dd690-64b7-4bd6-8c4e-e39b3dd8b7ee"
+              image="https://res.cloudinary.com/bpsjatim/image/upload/f_auto,q_auto/bmvkoaikysmhrythzdfm"
               description="Klik tombol di bawah ini untuk membuat reservasi jadwal konsultasi sesuai dengan kebutuhan Anda"
               :action="[
                 {
@@ -40,18 +40,18 @@ import RotatingCardBackWarning from "../../../examples/cards/rotatingCards/Rotat
               />
               </RotatingCard>
             </div>
-            <div class="col-lg-4 ms-auto me-auto p-lg-4 mt-lg-0 mt-2">
+            <div class="col-lg-4 mx-auto p-lg-4 mt-lg-0 mt-2">
               <RotatingCard>
               <RotatingCardFront
-              image="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FEEq9xlWAdh88BOK1TjGF%2Fuploads%2FcRA3Uhl8W0qboG5sIMzA%2Fbg-success.png?alt=media&token=691ec035-509c-4dba-97a0-5a6ddfa2412c"
-              title="Ngobrol dengan<br /> Mbak AIDA"
-              description="Mbak AIDA (Artificial Intelligence Data Assistant) akan melayani permintaan data Anda selama 24 jam"
+              image="https://res.cloudinary.com/bpsjatim/image/upload/f_auto,q_auto/o43nykivufzlmudnx4v6"
+              title="Ngobrol dengan<br /> Ning AIDA"
+              description="Ning AIDA (Artificial Intelligence Data Assistant) akan melayani permintaan data Anda selama 24 jam"
               label="🗓️ Setiap Hari, 24 Jam Non Stop"
               />
 
               <RotatingCardBack
-              image="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FEEq9xlWAdh88BOK1TjGF%2Fuploads%2FcRA3Uhl8W0qboG5sIMzA%2Fbg-success.png?alt=media&token=691ec035-509c-4dba-97a0-5a6ddfa2412c"
-              description="Harap diingat bahwa meskipun AIDA yang berbasis kecerdasan buatan (AI) berupaya memberikan pelayanan 24 jam non stop, AIDA mungkin saja membuat kesalahan saat memberikan informasi"
+              image="https://res.cloudinary.com/bpsjatim/image/upload/f_auto,q_auto/o43nykivufzlmudnx4v6"
+              description="Harap diingat bahwa meskipun AIDA yang berbasis kecerdasan buatan (AI) berupaya memberikan pelayanan 24 jam non stop, AIDA mungkin saja membuat kesalahan saat memberikan informasi. Tetap merujuk ke website BPS untuk data yang paling akurat."
               :action="[
                 {
                   route: '/aida',
@@ -65,14 +65,14 @@ import RotatingCardBackWarning from "../../../examples/cards/rotatingCards/Rotat
             <div class="col-lg-4 ms-auto me-auto p-lg-4 mt-lg-0 mt-2">
               <RotatingCard>
               <RotatingCardFrontWarning
-              image="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FEEq9xlWAdh88BOK1TjGF%2Fuploads%2FWUqeIYS0KpBQf9jBK08i%2Fbg-warning.png?alt=media&token=97a23def-bf95-4ab4-bf35-bd56b79b9c6a"
+              image="https://res.cloudinary.com/bpsjatim/image/upload/f_auto,q_auto/wb88gcfmrrggwhxho4l4"
               title="Baca Koleksi<br />Publikasi BPS"
               description="Anda bisa membaca secara gratis publikasi BPS yang berisi tentang data statistik, ulasan, dan analisis dengan beragam topik."
               label="🗓️ Setiap Saat"
               />
 
               <RotatingCardBackWarning
-              image="https://files.gitbook.com/v0/b/gitbook-x-prod.appspot.com/o/spaces%2FEEq9xlWAdh88BOK1TjGF%2Fuploads%2FWUqeIYS0KpBQf9jBK08i%2Fbg-warning.png?alt=media&token=97a23def-bf95-4ab4-bf35-bd56b79b9c6a"
+              image="https://res.cloudinary.com/bpsjatim/image/upload/f_auto,q_auto/wb88gcfmrrggwhxho4l4"
               description="Temukan publikasi statistik BPS berdasarkan kata kunci topik data sesuai kebutuhan Anda"
               :action="[
                 {
