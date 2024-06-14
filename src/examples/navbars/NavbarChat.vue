@@ -153,9 +153,9 @@ watch(
         />
       </RouterLink>
       <RouterLink
-        :to="{ name: 'konsultasi' }"
+        :to="{ name: 'login' }"
         class="btn btn-sm bg-gradient-success mb-0 ms-auto d-lg-none d-block"
-      >Konsultasi</RouterLink>
+      >Login</RouterLink>
       <button
         class="navbar-toggler shadow-none ms-2"
         type="button"
