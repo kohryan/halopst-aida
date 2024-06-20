@@ -27,8 +27,8 @@ import TransparentBlogCard from "../../../../examples/cards/blogCards/Transparen
         <div class="col-lg-3 col-sm-6">
           <TransparentBlogCard
             image="https://ppid.bps.go.id/upload/img/WhatsApp_Image_2024-02-29_at_09_11_30_1710735925087.jpg"
-            title="Maklumat Pelayanan Halo PST"
-            description="Maklumat Pelayanan Halo PST sebagai bentuk jaminan mutu BPS Provinsi Jawa Timur."
+            title="Maklumat Pelayanan"
+            description="Maklumat Pelayanan sebagai bentuk jaminan mutu BPS Provinsi Jawa Timur."
             v-bind:action="{
               route: 'https://ppid.bps.go.id/upload/img/WhatsApp_Image_2024-02-29_at_09_11_30_1710735925087.jpg',
               color: 'success',
