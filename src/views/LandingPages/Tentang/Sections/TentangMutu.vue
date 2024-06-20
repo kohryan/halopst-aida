@@ -26,11 +26,11 @@ import TransparentBlogCard from "../../../../examples/cards/blogCards/Transparen
         </div>
         <div class="col-lg-3 col-sm-6">
           <TransparentBlogCard
-            image="https://res.cloudinary.com/bpsjatim/image/upload/f_auto,q_auto/ib1kzbe6hrz8uwxbnnmj"
+            image="https://ppid.bps.go.id/upload/img/WhatsApp_Image_2024-02-29_at_09_11_30_1710735925087.jpg"
             title="Maklumat Pelayanan Halo PST"
             description="Maklumat Pelayanan Halo PST sebagai bentuk jaminan mutu BPS Provinsi Jawa Timur."
             v-bind:action="{
-              route: 'https://ppid.bps.go.id/upload/doc/SOP_Halo_PST__PST_Digital__1718846394.pdf',
+              route: 'https://ppid.bps.go.id/upload/img/WhatsApp_Image_2024-02-29_at_09_11_30_1710735925087.jpg',
               color: 'success',
               label: 'Lihat'
               }"          
@@ -50,11 +50,11 @@ import TransparentBlogCard from "../../../../examples/cards/blogCards/Transparen
         </div>
         <div class="col-lg-3 col-sm-6">
           <TransparentBlogCard
-            image="https://res.cloudinary.com/bpsjatim/image/upload/f_auto,q_auto/ib1kzbe6hrz8uwxbnnmj"
+            image="https://res.cloudinary.com/bpsjatim/image/upload/f_auto,q_auto/ztocgmry4rfaxswdnw8h"
             title="Kebijakan dan Sasaran Mutu Halo PST"
             description="Kebijakan dan Sasaran Mutu Aplikasi Halo PST sebagai bentuk jaminan mutu BPS Provinsi Jawa Timur."
             v-bind:action="{
-              route: 'https://ppid.bps.go.id/upload/doc/SOP_Halo_PST__PST_Digital__1718846394.pdf',
+              route: 'https://ppid.bps.go.id/upload/doc/Kebijakan_dan_Sasaran_Mutu_BPS_Jawa_Timur_1718847643.pdf',
               color: 'success',
               label: 'Lihat'
               }"          
