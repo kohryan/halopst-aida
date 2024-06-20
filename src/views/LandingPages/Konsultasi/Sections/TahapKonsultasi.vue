@@ -1,16 +1,41 @@
 <template>
   <section class="py-4">
     <div class="container">
-      <div class="row align-items-center">
-        <div v-for="(tahap, index) in tahapanKonsultasi" :key="index" class="col-lg-4">
-          <div class="row justify-content-center text-center">
-            <DefaultInfoCard
-              :image="tahap.image"
-              :description="tahap.description"
-              :targetUrl="tahap.targetUrl"
-              @scrollToPilih="scrollToPilih"
-            />
-          </div>
+      <div class="row align-items-center justify-content-center">
+        <!-- tahap 1 -->
+        <div class="col-lg-3 row justify-content-center text-center">
+          <DefaultInfoCard
+            :image="tahapanKonsultasi[0].image"
+            :description="tahapanKonsultasi[0].description"
+            :targetUrl="tahapanKonsultasi[0].targetUrl"
+            @scrollToPilih="scrollToPilih"
+          />
+        </div>
+        <!-- Arrow -->
+        <div class="col-lg-1 text-center d-lg-block d-none ">
+          <img src="@/assets/img/illustrations/panah-kanan.png" alt="Arrow" class="img-fluid" />
+        </div>
+        <!-- tahap 2 -->
+        <div class="col-lg-3 row justify-content-center text-center">
+          <DefaultInfoCard
+            :image="tahapanKonsultasi[1].image"
+            :description="tahapanKonsultasi[1].description"
+            :targetUrl="tahapanKonsultasi[1].targetUrl"
+            @scrollToPilih="scrollToPilih"
+          />
+        </div>
+        <!-- Arrow -->
+        <div class="col-lg-1 text-center d-lg-block d-none ">
+          <img src="@/assets/img/illustrations/panah-kanan.png" alt="Arrow" class="img-fluid" />
+        </div>
+        <!-- tahap 3 -->
+        <div class="col-lg-3 row justify-content-center text-center">
+          <DefaultInfoCard
+            :image="tahapanKonsultasi[2].image"
+            :description="tahapanKonsultasi[2].description"
+            :targetUrl="tahapanKonsultasi[2].targetUrl"
+            @scrollToPilih="scrollToPilih"
+          />
         </div>
       </div>
     </div>
@@ -44,3 +69,21 @@ const scrollToPilih = () => {
   emit('scrollToPilih');
 };
 </script>
+
+<style scoped>
+  .row {
+    display: flex;
+    align-items: center;
+  }
+
+  .col-lg-3, .col-lg-1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .col-lg-1 img {
+    width: 100%;
+    max-width: 50px; /* Adjust as necessary */
+  }
+</style>
