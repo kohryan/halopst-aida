@@ -13,7 +13,7 @@ import RotatingCardBackWarning from "../../../examples/cards/rotatingCards/Rotat
     <div class="container">
       <div class="row justify-content-center text-center my-sm-3">
           <div class="col-lg-6">
-            <h3 class="text-dark mb-0">Masih bingung dengan data BPS?</h3>
+            <h3 class="text-dark mb-0">Tenang! Kami Ada untuk Solusi Data Anda</h3>
           </div>
         </div>
       <div class="row align-items-center">

@@ -53,7 +53,7 @@ onUnmounted(() => {
   </div>
   <Header>
     <div
-      class="page-header min-vh-75"
+      class="page-header min-vh-50 pt-6"
       :style="`background-image: url(${bg0})`"
       loading="lazy"
     >
@@ -69,20 +69,11 @@ onUnmounted(() => {
             </h1>
             <p class="text-white px-5 mt-1" :style="{ fontWeight: '500' }">
               <i>"Saya lagi butuh <span class="text-white" id="typed"></span>, nih </i>🥺 <br />
-              <h4 class="text-white font-weight-normal">
-                Tenang! Kami Ada untuk Solusi Data Anda
-              </h4>
             </p>
             <div id="typed-strings">
               <h1>data statistik</h1>
               <h1>konsultasi data</h1>
               <h1><s>jodoh</s> ide skripsi</h1>
-            </div>
-          </div>
-          <div class="col-lg-6 mx-auto position-relative">
-            <div class="input-group mt-3">
-              <input type="text" class="form-control bg-white px-3" placeholder="Cari Data Apa?" aria-label="Recipient's username" aria-describedby="button-addon2" v-model="searchQuery" @keyup.enter="search">
-              <button class="btn btn-success" style="margin-bottom: 0;" type="button-lg" id="button-addon2" @click="search">Cari</button>
             </div>
           </div>
         </div>
