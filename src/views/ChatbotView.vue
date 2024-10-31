@@ -155,6 +155,14 @@ export default {
       this.chats = updatedChats;
     },
     formatMessage(message) {
+
+      message = message.replace(/^###### (.*$)/gim, '<h6>$1</h6>');
+      message = message.replace(/^##### (.*$)/gim, '<h5>$1</h5>');
+      message = message.replace(/^#### (.*$)/gim, '<h4>$1</h4>');
+      message = message.replace(/^### (.*$)/gim, '<h3>$1</h3>');
+      message = message.replace(/^## (.*$)/gim, '<h2>$1</h2>');
+      message = message.replace(/^# (.*$)/gim, '<h1>$1</h1>');
+  
       // Replace **bold** with <strong>
       message = message.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
       
@@ -170,6 +178,18 @@ export default {
       // Replace numbered lists
       message = message.replace(/^\d+\.\s/gm, (match) => `<br>${match}`);
 
+      // Replace R snippet
+      message = message.replace(/```R([\s\S]*?)```/g, function(p1) {
+      const codeContent = p1
+        .trim()
+          // Convert any headers inside R code blocks to smaller size
+          p1.replace(/^# (.*$)/gim, '<h1>$1</h1>')
+          p1.replace(/^## (.*$)/gim, '<h2>$1</h2>')
+          p1.replace(/^\d+\.\s/gm, (match) => `<br>${match}`);
+
+      return '<pre><code class="language-R">' + codeContent + '</code></pre>';
+      });
+
       return message;
     }
   }
@@ -177,6 +197,18 @@ export default {
 </script>
 
 <style scoped>
+
+.code-heading {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.code-subheading {
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+}
+
 .chat-layout {
   display: flex;
   height: 100vh;
